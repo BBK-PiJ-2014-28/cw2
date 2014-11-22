@@ -87,6 +87,28 @@ public class Fraction {
         return new Fraction(num, denom);
     }
 
+    public Fraction absValue(Fraction other) {
+        //return the absolute value of a fraction
+        if(other.getNumerator() < 0) {
+            int num = other.getNumerator() * -1;
+            int denom = other.getDenominator();
+            return new Fraction(num, denom);
+        }
+        else {
+            return other;
+        }
+    }
+
+    public Fraction negate(Fraction other) {
+        if(other.getNumerator() > 0) {
+            int num = other.getNumerator() * -1;
+            int denom = other.getDenominator();
+            return new Fraction(num, denom);
+        }
+        else {
+            return other;
+        }
+    }
     private int myGcd(int a, int b) {
         while (b != 0) {
             int t = b;
