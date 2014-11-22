@@ -64,6 +64,16 @@ public class Fraction {
         return new Fraction(num, denom);
     }
 
+    public Fraction divide(Fraction other) {
+
+        // as per method of dividing fractions, second fraction is flipped before multiplying with first fraction
+        int flipNum = other.getDenominator();
+        int flipDenom = other.getNumerator();
+        int num = this.getNumerator() * flipNum;
+        int denom = this.getDenominator() * flipDenom;
+        return new Fraction(num, denom);
+    }
+
     private int myGcd(int a, int b) {
         while (b != 0) {
             int t = b;
