@@ -66,13 +66,39 @@ public class Fraction {
 
     public Fraction divide(Fraction other) {
 
-        // as per method of dividing fractions, second fraction is flipped before multiplying with first fraction
-        int flipNum = other.getDenominator();
-        int flipDenom = other.getNumerator();
-        int num = this.getNumerator() * flipNum;
-        int denom = this.getDenominator() * flipDenom;
-        return new Fraction(num, denom);
+        // instead of two step fraction flipping process, simplified to one step division
+        int num = this.getNumerator() * other.getDenominator();
+        int denom = this.getDenominator() * other.getNumerator();
+        Fraction f = new Fraction(num, denom);
+        return simplify(f);
     }
+
+    public Fraction add(Fraction other) {
+
+        /** easiest method of adding fractions - first numerator is multiplied by denominator of second fraction
+        * then, second numerator multiplied by first denominator to achieve common denominator
+         * finally two numerators added and simplified */
+        int num = (this.getNumerator() * other.getDenominator()) + (other.getNumerator() * this.getDenominator());
+        int denom = this.getDenominator() * other.getDenominator();
+        Fraction f = new Fraction(num, denom);
+        return simplify(f);
+     }
+
+    public Fraction simplify(Fraction other) {
+        //simplify fractions to store best result
+        int lowestNum = 0;
+        int lowestDenom = 0;
+        int a = 2;
+        while ((other.getDenominator() % a != 0) && (other.getNumerator() % a != 0)) {
+            a++;
+        }
+        while ((other.getDenominator() % a == 0) && (other.getNumerator() % a == 0)) {
+            lowestNum = other.getNumerator() / a;
+            lowestDenom = other.getDenominator() / a;
+        }
+        return new Fraction(lowestNum, lowestDenom);
+    }
+
 
     private int myGcd(int a, int b) {
         while (b != 0) {
