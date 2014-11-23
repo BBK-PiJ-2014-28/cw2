@@ -81,8 +81,18 @@ public class FractionCalculator {
                     firstFraction = clearedFraction;
                     System.out.println("All values cleared.");
 
+                } else if (isInteger(inputs[i])) {
+                    //if input is none of above and is an integer, it is a whole number
+                    int f = Integer.parseInt(inputs[i]);
+                    Fraction wholeNumber = new Fraction(f, 1);
+                    if (!isFirstFractionComplete) {
+                        firstFraction = wholeNumber;
+                    } else {
+                        secondFraction = wholeNumber;
+                    }
+                    
                 } else {
-                    //clears calculator as is invalid input
+                    //clears calculator as is invalid input if none of above applies
                     storedOperator = "";
                     operatorStored = false;
                     Fraction clearedFraction = new Fraction(0, 1);
@@ -124,6 +134,28 @@ public class FractionCalculator {
                 } else {
                     return fr1;
                 }
+            }
+
+            //isInteger method to determine if the string can be parsed as an integer
+            public static boolean isInteger(String str) {
+                int l = str.length();
+                if (l == 0) {
+                    return false;
+                }
+                int i = 0;
+                if (str.charAt(0) == '-') {
+                    if (l == 1) {
+                    return false;
+                    }
+                i = 1;
+                }
+                for (; i < l; i++) {
+                    char c = str.charAt(i);
+                    if (c <= '/' || c >= ':') {
+                    return false;
+                    }
+                }
+                return true;
             }
         }
 
