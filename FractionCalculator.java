@@ -35,9 +35,21 @@ public class FractionCalculator {
             String delims = "[ ]+";
             String[] inputs = inputString.split(delims);
             for (int i = 0; i < inputs.length; i++) {
-
+                if (anOperator(inputs[i])) {
+                    storedOperator = inputs[i];
+                    operatorStored = true;
+                } else if {
             }
 
+            public boolean anOperator(String s) {
+                if (s.length() == 1) {
+                        if (s.equals("+") || s.equals("-") || s.equals("/") || s.equals("*")) {
+                            return true;
+                        }
+                } else {
+                    return false;
+                }
+        }
         }
 
     }
