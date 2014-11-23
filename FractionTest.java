@@ -19,6 +19,23 @@ public class FractionTest {
 	test(new Fraction(4, -8),new Fraction(1, 2),"error test 5");
 
         // extend with extra tests
+		//test division
+	Fraction l = new Fraction(1, 2);
+	Fraction m = new Fraction(1, 8);
+	Fraction n = new Fraction(1, 4);
+	if (!l.equals(m.divide(n))) System.out.println("Division failed");
+
+		//test addition
+	Fraction x = new Fraction(31, 40);
+	Fraction y = new Fraction(2, 5);
+	Fraction z = new Fraction(3, 8);
+	if (!x.equals(y.add(z))) System.out.println("Addition Failed");
+
+		//test subtraction
+	Fraction a = new Fraction(3, 20);
+	Fraction b = new Fraction(2, 5);
+	Fraction c = new Fraction(1, 4);
+	if (!a.equals(b.subtract(c))) System.out.println("Subtraction Failed");
     }
 
     static void test(Fraction f1, Fraction f2, String msg){
