@@ -7,16 +7,15 @@ public class FractionCalculator {
         calculator.letsGo();
     }
     private void letsGo() {
-        String storedOperand = "";
-        boolean operandStored = false;
         boolean finished = false;
-        Fraction fraction = new Fraction(0,1);
+
 
         // Welcome message
         System.out.println("Welcome to Annabel Jump's fraction calculator!");
+        System.out.println("Still not complete, but please check it out!");
         while (!finished) {
             System.out.println("Please enter your calculation:");
-
+            Fraction fraction = new Fraction(0,1);
             //Scanner to receive user input
             Scanner sc = new Scanner(System.in);
             String inputCalculation = sc.nextLine();
@@ -25,13 +24,21 @@ public class FractionCalculator {
                 System.out.print("Goodbye");
                 finished = true;
             } else {
-                calculator.evaluate(fraction, inputCalculation);
+                fraction = evaluate(fraction, inputCalculation);
+                System.out.println("Your current answer is: " + fraction);
             }
         }
-        //split up string to parts so as can evaluate
-        String delims = "[ ]+";
-        String[] inputs = inputCalculation.split(delims);
+        public Fraction evaluate(Fraction fraction, String inputString) {
+            String storedOperator = "";
+            boolean operatorStored = false;
+            //split up string to parts so as can evaluate
+            String delims = "[ ]+";
+            String[] inputs = inputString.split(delims);
+            for (int i = 0; i < inputs.length; i++) {
 
+            }
+
+        }
 
     }
 
