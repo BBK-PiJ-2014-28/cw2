@@ -32,11 +32,12 @@ public class FractionCalculator {
             String storedOperator = "";
             boolean operatorStored = false;
             Fraction firstFraction = new Fraction(0, 1);
-            Fraction secondFraction = new Fraction(0,1);
+            Fraction secondFraction = new Fraction(0, 1);
             //split up string to parts so as can evaluate
             String delims = "[ ]+";
             String[] inputs = inputString.split(delims);
             for (int i = 0; i < inputs.length; i++) {
+               // determines what sort of input is in array and acts accordingly
                 if (anOperator(inputs[i])) {
                     storedOperator = inputs[i];
                     operatorStored = true;
@@ -48,6 +49,7 @@ public class FractionCalculator {
                     firstFraction.setNumerator(a);
                     firstFraction.setDenominator(b);
                 } else if (isAFraction(inputs[i]) && operatorStored) {
+                    //logically if the input is a fraction and an operator has been stored, it is not the first fraction
                     String x = inputs[i].substring(0);
                     String y = inputs[i].substring(2);
                     int a = Integer.parseInt(x);
