@@ -19,7 +19,7 @@ public class FractionCalculator {
             Scanner sc = new Scanner(System.in);
             String inputCalculation = sc.nextLine();
             //check if quit command given, if not, evaluate
-            if (inputCalculation.equals("q") || inputCalculation.equals("quit") || inputCalculation.equals("Q")) {
+            if (inputCalculation.equalsIgnoreCase("q") || inputCalculation.equalsIgnoreCase("quit")) {
                 System.out.print("Goodbye");
                 finished = true;
             } else {
@@ -59,13 +59,13 @@ public class FractionCalculator {
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
                     firstFraction = execute(firstFraction, secondFraction);
-                } else if ((inputs[i].equals("a") || inputs[i].equals("A") || inputs[i].equals("abs"))
+                } else if ((inputs[i].equalsIgnoreCase("a") || inputs[i].equalsIgnoreCase("abs"))
                         && isFirstFractionComplete) {
                     firstFraction = absValue(firstFraction);
-                } else if ((inputs[i].equals("n") || inputs[i].equals("N") || inputs[i].equals("neg"))
+                } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
                     firstFraction = negate(firstFraction);
-                }
+                } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear")))
             } return firstFraction
         }
 
