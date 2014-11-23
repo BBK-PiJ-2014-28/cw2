@@ -56,6 +56,7 @@ public class FractionCalculator {
                     int b = Integer.parseInt(y);
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
+                    firstFraction = execute(firstFraction, secondFraction);
                 }
             }
         }
@@ -77,6 +78,20 @@ public class FractionCalculator {
                    }
                 } else {
                     return false;
+                }
+            }
+
+            public Fraction execute(Fraction fr1, fr2) {
+                if (storedOperator == "+") {
+                    return fr1.add(fr2);
+                } else if (storedOperator == "-") {
+                    return fr1.subtract(fr2);
+                } else if (storedOperator == "/") {
+                    return fr1.divide(fr2);
+                } else if (storedOperator == "*") {
+                    return fr1.multiply(fr2);
+                } else {
+                    return System.out.println("Invalid Operator! Please try again.");
                 }
             }
         }
