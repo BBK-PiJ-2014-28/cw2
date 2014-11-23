@@ -89,8 +89,9 @@ public class FractionCalculator {
                         firstFraction = wholeNumber;
                     } else {
                         secondFraction = wholeNumber;
+                        firstFraction = execute(firstFraction, secondFraction);
                     }
-                    
+
                 } else {
                     //clears calculator as is invalid input if none of above applies
                     storedOperator = "";
