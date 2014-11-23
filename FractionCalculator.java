@@ -28,7 +28,7 @@ public class FractionCalculator {
             }
         }
     }
-        public Fraction evaluate(Fraction fraction, String inputString) {
+        public Fraction evaluate(Fraction firstFraction, String inputString) {
             String storedOperator = "";
             boolean operatorStored = false;
             boolean isFirstFractionComplete = false;
@@ -42,7 +42,9 @@ public class FractionCalculator {
                 if (anOperator(inputs[i])) {
                     storedOperator = inputs[i];
                     operatorStored = true;
+
                 } else if (isAFraction(inputs[i]) && !operatorStored && !isFirstFractionComplete) {
+                    //assigns values to the first fraction only if it is actually the first fraction
                     String x = inputs[i].substring(0);
                     String y = inputs[i].substring(2);
                     int a = Integer.parseInt(x);
@@ -50,6 +52,7 @@ public class FractionCalculator {
                     firstFraction.setNumerator(a);
                     firstFraction.setDenominator(b);
                     isFirstFractionComplete = true;
+
                 } else if (isAFraction(inputs[i]) && operatorStored) {
                     //logically if the input is a fraction and an operator has been stored, it is not the first fraction
                     String x = inputs[i].substring(0);
@@ -59,16 +62,22 @@ public class FractionCalculator {
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
                     firstFraction = execute(firstFraction, secondFraction);
+
                 } else if ((inputs[i].equalsIgnoreCase("a") || inputs[i].equalsIgnoreCase("abs"))
                         && isFirstFractionComplete) {
+                    //returns absolute of fraction
                     firstFraction = absValue(firstFraction);
+
                 } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
+                    //negates fraction
                     firstFraction = negate(firstFraction);
+
                 } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear"))) {
+                    //clears calculator
                     storedOperator = "";
                     operatorStored = false;
-                    clearedFraction = new Fraction(0,1);
+                    Fraction clearedFraction = new Fraction(0,1);
                     firstFraction = clearedFraction;
                     System.out.println("All values cleared.");
                 }
@@ -95,7 +104,7 @@ public class FractionCalculator {
                 }
             }
 
-            public Fraction execute(Fraction fr1, fr2) {
+            public Fraction execute(Fraction fr1, Fraction fr2) {
                 if (storedOperator == "+") {
                     return fr1.add(fr2);
                 } else if (storedOperator == "-") {
@@ -105,7 +114,8 @@ public class FractionCalculator {
                 } else if (storedOperator == "*") {
                     return fr1.multiply(fr2);
                 } else {
-                    return System.out.println("Invalid Operator! Please try again.");
+                    Fraction fractionInvalid = new Fraction(0, 1);
+                    return fr1;
                 }
             }
         }
