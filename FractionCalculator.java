@@ -65,8 +65,14 @@ public class FractionCalculator {
                 } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
                     firstFraction = negate(firstFraction);
-                } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear")))
-            } return firstFraction
+                } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear"))) {
+                    storedOperator = "";
+                    operatorStored = false;
+                    clearedFraction = new Fraction(0,1);
+                    firstFraction = clearedFraction;
+                    System.out.println("All values cleared.");
+                }
+            } return firstFraction;
         }
 
             public boolean anOperator(String s) {
