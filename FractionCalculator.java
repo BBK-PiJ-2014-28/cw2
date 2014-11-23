@@ -31,6 +31,7 @@ public class FractionCalculator {
         public Fraction evaluate(Fraction fraction, String inputString) {
             String storedOperator = "";
             boolean operatorStored = false;
+            boolean isFirstFractionComplete = false;
             Fraction firstFraction = new Fraction(0, 1);
             Fraction secondFraction = new Fraction(0, 1);
             //split up string to parts so as can evaluate
@@ -41,13 +42,14 @@ public class FractionCalculator {
                 if (anOperator(inputs[i])) {
                     storedOperator = inputs[i];
                     operatorStored = true;
-                } else if (isAFraction(inputs[i]) && !operatorStored) {
+                } else if (isAFraction(inputs[i]) && !operatorStored && !isFirstFractionComplete) {
                     String x = inputs[i].substring(0);
                     String y = inputs[i].substring(2);
                     int a = Integer.parseInt(x);
                     int b = Integer.parseInt(y);
                     firstFraction.setNumerator(a);
                     firstFraction.setDenominator(b);
+                    isFirstFractionComplete = true;
                 } else if (isAFraction(inputs[i]) && operatorStored) {
                     //logically if the input is a fraction and an operator has been stored, it is not the first fraction
                     String x = inputs[i].substring(0);
@@ -57,8 +59,14 @@ public class FractionCalculator {
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
                     firstFraction = execute(firstFraction, secondFraction);
+                } else if ((inputs[i].equals("a") || inputs[i].equals("A") || inputs[i].equals("abs"))
+                        && isFirstFractionComplete) {
+                    firstFraction = absValue(firstFraction);
+                } else if ((inputs[i].equals("n") || inputs[i].equals("N") || inputs[i].equals("neg"))
+                        && isFirstFractionComplete) {
+                    firstFraction = negate(firstFraction);
                 }
-            }
+            } return firstFraction
         }
 
             public boolean anOperator(String s) {
