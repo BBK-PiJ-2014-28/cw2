@@ -80,6 +80,14 @@ public class FractionCalculator {
                     Fraction clearedFraction = new Fraction(0,1);
                     firstFraction = clearedFraction;
                     System.out.println("All values cleared.");
+
+                } else {
+                    //clears calculator as is invalid input
+                    storedOperator = "";
+                    operatorStored = false;
+                    Fraction clearedFraction = new Fraction(0, 1);
+                    firstFraction = clearedFraction;
+                    System.out.println("Invalid input. Please start again.");
                 }
             } return firstFraction;
         }
@@ -114,7 +122,6 @@ public class FractionCalculator {
                 } else if (storedOperator == "*") {
                     return fr1.multiply(fr2);
                 } else {
-                    Fraction fractionInvalid = new Fraction(0, 1);
                     return fr1;
                 }
             }
