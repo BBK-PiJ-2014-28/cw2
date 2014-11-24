@@ -30,14 +30,14 @@ public class FractionCalculator {
             }
         }
     }
-        public Fraction evaluate(Fraction firstFraction, String inputString) {
+        public Fraction evaluate(Fraction inputFraction, String inputString) {
             String storedOperator = "";
             boolean operatorStored = false;
             boolean isFirstFractionComplete = false;
-            firstFraction = new Fraction(0, 1);
+            Fraction firstFraction = new Fraction(0, 1);
             Fraction secondFraction = new Fraction(0, 1);
             //split up string to parts so as can evaluate
-            String delims = "[ ]+";
+            String delims = "[ ]";
             String[] inputs = inputString.split(delims);
             for (int i = 0; i < inputs.length; i++) {
                // determines what sort of input is in array and acts accordingly
@@ -122,20 +122,24 @@ public class FractionCalculator {
                 if (s.length() == 1) {
                     if (s.equals("+") || s.equals("-") || s.equals("/") || s.equals("*")) {
                         return true;
+                    } else {
+                        return false;
                     }
                 } else {
                     return false;
-                } return false;
+                }
             }
 
             public boolean isAFraction(String str) {
                 if (str.length() == 3) {
                    if (str.charAt(1) == '/') {
                        return true;
+                   } else {
+                       return false;
                    }
                 } else {
                     return false;
-                } return false;
+                }
             }
 
             public Fraction letUsCalculate(Fraction fr1, Fraction fr2, String operator) {
