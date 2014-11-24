@@ -59,7 +59,7 @@ public class FractionCalculator {
                     firstFraction.setDenominator(b);
                     isFirstFractionComplete = true;
                     return firstFraction;
-
+                    
                 } else if (isAFraction(inputs[i]) && operatorStored) {
                     //logically if the input is a fraction and an operator has been stored, it is not the first fraction
                     String sp = inputs[i];
@@ -74,15 +74,16 @@ public class FractionCalculator {
                     firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
                     return firstFraction;
 
-
+                //bug - a does not return absolute value
                 } else if ((inputs[i].equalsIgnoreCase("a") || inputs[i].equalsIgnoreCase("abs"))
                         && isFirstFractionComplete) {
-                    //returns absolute of fraction - compiling error not yet fixed
+                    //returns absolute of fraction
                      return firstFraction = firstFraction.absValue(firstFraction);
 
+                //bug - n does not negate fraction
                 } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
-                    //negates fraction - compiling error not yet fixed
+                    //negates fraction
                    return firstFraction = firstFraction.negate(firstFraction);
 
                 } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear"))) {
@@ -131,9 +132,19 @@ public class FractionCalculator {
             }
 
             public boolean isAFraction(String str) {
-                if (str.length() == 3) {
-                   if (str.charAt(1) == '/') {
-                       return true;
+                if ((str.length() == 3) || (str.length() == 4)) {
+                   if (str.length() == 3) {
+                       if (str.charAt(1) == '/') {
+                           return true;
+                       } else {
+                           return false;
+                       }
+                   } else if (str.length() == 4) {
+                       if ((str.charAt(0) == '-') && (str.charAt(2) == '/')) {
+                           return true;
+                       } else {
+                           return false;
+                       }
                    } else {
                        return false;
                    }
