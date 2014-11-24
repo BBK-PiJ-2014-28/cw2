@@ -2,12 +2,15 @@
 import java.util.Scanner;
 
 public class FractionCalculator {
-    public static void main(String[] args) {
-        FractionCalculator calculator = new FractionCalculator();
-        calculator.letsGo();
+    private Scanner sc;
+    private boolean finished;
+
+    public FractionCalculator() {
+        sc = new Scanner(System.in);
+        finished = false;
     }
+
     public void letsGo() {
-        boolean finished = false;
 
         // Welcome message
         System.out.println("Welcome to Annabel Jump's fraction calculator!");
@@ -15,8 +18,7 @@ public class FractionCalculator {
         while (!finished) {
             System.out.println("Please enter your calculation:");
             Fraction fraction = new Fraction(0, 1);
-            //Scanner to receive user input
-            Scanner sc = new Scanner(System.in);
+            //Scanner receive user input
             String inputCalculation = sc.nextLine();
             //check if quit command given, if not, evaluate
             if (inputCalculation.equalsIgnoreCase("q") || inputCalculation.equalsIgnoreCase("quit")) {
