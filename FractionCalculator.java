@@ -100,10 +100,12 @@ public class FractionCalculator {
                     Fraction wholeNumber = new Fraction(f, 1);
                     if (!isFirstFractionComplete) {
                         firstFraction = wholeNumber;
+                        return firstFraction;
                     } else {
                         secondFraction = wholeNumber;
                         firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
-                    } return firstFraction;
+                        return firstFraction;
+                    }
 
                 } else {
                     //clears calculator as is invalid input if none of above applies
