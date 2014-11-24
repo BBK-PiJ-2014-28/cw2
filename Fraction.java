@@ -1,5 +1,5 @@
 /**
- * Created by keith for the second coursework assignment.
+ * Created by keith (& edited by Annabel Jump) for the second coursework assignment.
  */
 public class Fraction {
     private int numerator;
@@ -78,7 +78,7 @@ public class Fraction {
 
     public Fraction add(Fraction other) {
         /** easiest method of adding fractions - first numerator is multiplied by denominator of second fraction
-        * then, second numerator multiplied by first denominator to achieve common denominator
+        * then, second numerator multiplied by first denominator (to achieve fractions over common denominator)
          * finally two numerators added and through myGcd is simplified on creation of Fraction */
         int num = (this.getNumerator() * other.getDenominator()) + (other.getNumerator() * this.getDenominator());
         int denom = this.getDenominator() * other.getDenominator();
