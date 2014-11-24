@@ -44,37 +44,46 @@ public class FractionCalculator {
                 if (anOperator(inputs[i])) {
                     storedOperator = inputs[i];
                     operatorStored = true;
+                    return firstFraction;
 
                 } else if (isAFraction(inputs[i]) && !operatorStored && !isFirstFractionComplete) {
                     //assigns values to the first fraction only if it is actually the first fraction
-                    String x = inputs[i].substring(0);
-                    String y = inputs[i].substring(2);
+                    String sn = inputs[i];
+                    String delims2 = "[/]";
+                    String[] topNum = sn.split(delims2);
+                    String x = topNum[0];
+                    String y = topNum[1];
                     int a = Integer.parseInt(x);
                     int b = Integer.parseInt(y);
                     firstFraction.setNumerator(a);
                     firstFraction.setDenominator(b);
                     isFirstFractionComplete = true;
+                    return firstFraction;
 
                 } else if (isAFraction(inputs[i]) && operatorStored) {
                     //logically if the input is a fraction and an operator has been stored, it is not the first fraction
-                    String x = inputs[i].substring(0);
-                    String y = inputs[i].substring(2);
+                    String sp = inputs[i];
+                    String delims3 = "[/]";
+                    String[] topNum2 = sp.split(delims3);
+                    String x = topNum2[0];
+                    String y = topNum2[1];
                     int a = Integer.parseInt(x);
                     int b = Integer.parseInt(y);
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
                     firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
+                    return firstFraction;
 
 
                 } else if ((inputs[i].equalsIgnoreCase("a") || inputs[i].equalsIgnoreCase("abs"))
                         && isFirstFractionComplete) {
                     //returns absolute of fraction - compiling error not yet fixed
-                    firstFraction = firstFraction.absValue(firstFraction);
+                     return firstFraction = firstFraction.absValue(firstFraction);
 
                 } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
                     //negates fraction - compiling error not yet fixed
-                    firstFraction = firstFraction.negate(firstFraction);
+                   return firstFraction = firstFraction.negate(firstFraction);
 
                 } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear"))) {
                     //clears calculator
@@ -83,6 +92,7 @@ public class FractionCalculator {
                     Fraction clearedFraction = new Fraction(0,1);
                     firstFraction = clearedFraction;
                     System.out.println("All values cleared.");
+                    return firstFraction;
 
                 } else if (isInteger(inputs[i])) {
                     //if input is none of above and is an integer, it is a whole number
@@ -93,7 +103,7 @@ public class FractionCalculator {
                     } else {
                         secondFraction = wholeNumber;
                         firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
-                    }
+                    } return firstFraction;
 
                 } else {
                     //clears calculator as is invalid input if none of above applies
@@ -102,7 +112,7 @@ public class FractionCalculator {
                     Fraction clearedFraction = new Fraction(0, 1);
                     firstFraction = clearedFraction;
                     System.out.println("Invalid input. Please start again.");
-                }
+                } return firstFraction;
             } return firstFraction;
         }
 
