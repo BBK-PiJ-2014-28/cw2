@@ -34,7 +34,7 @@ public class FractionCalculator {
             String storedOperator = "";
             boolean operatorStored = false;
             boolean isFirstFractionComplete = false;
-            Fraction firstFraction = new Fraction(0, 1);
+            firstFraction = new Fraction(0, 1);
             Fraction secondFraction = new Fraction(0, 1);
             //split up string to parts so as can evaluate
             String delims = "[ ]+";
@@ -63,17 +63,18 @@ public class FractionCalculator {
                     int b = Integer.parseInt(y);
                     secondFraction.setNumerator(a);
                     secondFraction.setDenominator(b);
-                    firstFraction = execute(firstFraction, secondFraction);
+                    firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
+
 
                 } else if ((inputs[i].equalsIgnoreCase("a") || inputs[i].equalsIgnoreCase("abs"))
                         && isFirstFractionComplete) {
-                    //returns absolute of fraction
-                    firstFraction = absValue(firstFraction);
+                    //returns absolute of fraction - compiling error not yet fixed
+                    firstFraction = firstFraction.absValue(firstFraction);
 
                 } else if ((inputs[i].equalsIgnoreCase("n") || inputs[i].equalsIgnoreCase("neg"))
                         && isFirstFractionComplete) {
-                    //negates fraction
-                    firstFraction = negate(firstFraction);
+                    //negates fraction - compiling error not yet fixed
+                    firstFraction = firstFraction.negate(firstFraction);
 
                 } else if ((inputs[i].equalsIgnoreCase("c") || inputs[i].equalsIgnoreCase("clear"))) {
                     //clears calculator
@@ -91,7 +92,7 @@ public class FractionCalculator {
                         firstFraction = wholeNumber;
                     } else {
                         secondFraction = wholeNumber;
-                        firstFraction = execute(firstFraction, secondFraction);
+                        firstFraction = letUsCalculate(firstFraction, secondFraction, storedOperator);
                     }
 
                 } else {
@@ -112,7 +113,7 @@ public class FractionCalculator {
                     }
                 } else {
                     return false;
-                }
+                } return false;
             }
 
             public boolean isAFraction(String str) {
@@ -122,17 +123,17 @@ public class FractionCalculator {
                    }
                 } else {
                     return false;
-                }
+                } return false;
             }
 
-            public Fraction execute(Fraction fr1, Fraction fr2) {
-                if (storedOperator == "+") {
+            public Fraction letUsCalculate(Fraction fr1, Fraction fr2, String operator) {
+                if (operator == "+") {
                     return fr1.add(fr2);
-                } else if (storedOperator == "-") {
+                } else if (operator == "-") {
                     return fr1.subtract(fr2);
-                } else if (storedOperator == "/") {
+                } else if (operator == "/") {
                     return fr1.divide(fr2);
-                } else if (storedOperator == "*") {
+                } else if (operator == "*") {
                     return fr1.multiply(fr2);
                 } else {
                     return fr1;
