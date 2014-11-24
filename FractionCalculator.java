@@ -1,4 +1,5 @@
 // Fraction Calculator by Annabel Jump for Programming in Java coursework 2
+
 import java.util.Scanner;
 
 public class FractionCalculator {
@@ -14,7 +15,6 @@ public class FractionCalculator {
 
         // Welcome message
         System.out.println("Welcome to Annabel Jump's fraction calculator!");
-        System.out.println("Still not working, but please check it out!");
         while (!finished) {
             System.out.println("Please enter your calculation:");
             Fraction fraction = new Fraction(0, 1);
@@ -59,7 +59,7 @@ public class FractionCalculator {
                     firstFraction.setDenominator(b);
                     isFirstFractionComplete = true;
                     return firstFraction;
-                    
+
                 } else if (isAFraction(inputs[i]) && operatorStored) {
                     //logically if the input is a fraction and an operator has been stored, it is not the first fraction
                     String sp = inputs[i];
