@@ -14,7 +14,7 @@ public class FractionCalculator {
 
         // Welcome message
         System.out.println("Welcome to Annabel Jump's fraction calculator!");
-        System.out.println("Still not complete, but please check it out!");
+        System.out.println("Still not working, but please check it out!");
         while (!finished) {
             System.out.println("Please enter your calculation:");
             Fraction fraction = new Fraction(0, 1);
